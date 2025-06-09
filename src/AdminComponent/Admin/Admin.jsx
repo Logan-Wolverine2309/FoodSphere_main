@@ -1,5 +1,4 @@
 import React from 'react'
-import { AdminSideBar } from './AdminSideBar'
 import { Route, Routes } from 'react-router-dom'
 import { RestaurantDashboard } from '../Dashboard/Dashboard'
 import { Orders } from '../Orders/Orders'
@@ -9,6 +8,7 @@ import Ingredients from '../Ingredients/Ingredients'
 import { Events } from '../Events/Events'
 import RestaurantDetails from './RestaurantDetails'
 import CreateMenuForm from '../Menu/CreateMenuForm'
+import AdminSideBar from './AdminSideBar'
 
 
 

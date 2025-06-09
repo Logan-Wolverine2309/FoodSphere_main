@@ -23,7 +23,7 @@ const menu=[
      
   ]
 
-export const AdminSideBar = ({ open, handleClose }) => {
+ const AdminSideBar = ({ open, handleClose }) => {
   const isSmallScreen =useMediaQuery("(max-width:1080px)");
   const navigate=useNavigate();
   const dispatch=useDispatch();

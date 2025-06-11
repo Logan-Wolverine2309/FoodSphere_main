@@ -1,31 +1,43 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./Home.css";
 import RestaurantCard from '../Restaurant/RestaurantCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllRestaurantAction } from '../State/Restaurant/Action';
-import { useNavigate } from 'react-router-dom';
 import MultiItemCarousel from './MultiItemCarousel';
 
+// Demo restaurant data
+const demoRestaurants = [
+  {
+    id: 1,
+    name: "The Grill House",
+    description: "Juicy grilled meals with spices",
+    images: ["https://source.unsplash.com/600x400/?restaurant,grill"],
+    open: true,
+    address: { city: "delhi" }
+  },
+  {
+    id: 2,
+    name: "Biryani Kingdom",
+    description: "Authentic Hyderabadi biryani",
+    images: ["https://source.unsplash.com/600x400/?biryani,food"],
+    open: true,
+    address: { city: "hyderabad" }
+  },
+  {
+    id: 3,
+    name: "Veggie Delight",
+    description: "Pure veg meals and snacks",
+    images: ["https://source.unsplash.com/600x400/?vegetarian,meal"],
+    open: false,
+    address: { city: "mumbai" }
+  }
+];
+
 const Home = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const jwt = localStorage.getItem("jwt");
- const restaurants = useSelector((state) => state.user); 
-
-  useEffect(() => {
-    if (!jwt) {
-      navigate("/"); // 🔐 if no JWT, send to login
-    } else {
-      dispatch(getAllRestaurantAction(jwt));
-    }
-  }, [jwt]);
-
   return (
     <div className='pb-10'>
       <section className='banner -z-50 relative flex flex-col justify-center items-center'>
         <div className='w-[50vw] z-10 text-center'>
           <p className='text-2xl lg:text-6xl font-bold z-10 py-5'>FoodSphere</p>
-          <p className='z-10 text-gray-300 text-xl lg:text-4xl'>The Ultimate Comfortable Tasty Foods for Every moods</p>
+          <p className='z-10 text-gray-300 text-xl lg:text-4xl'>The Ultimate Comfortable Tasty Foods for Every Mood</p>
         </div>
         <div className='cover absolute top-0 left-0 right-0'></div>
         <div className='fadout'></div>
@@ -37,9 +49,11 @@ const Home = () => {
       </section>
 
       <section className='px-5 lg:px-20 pt-10'>
-        <h1 className='text2xl font-semibold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
+        <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
         <div className='flex flex-wrap items-center justify-around gap-5'>
-          {restaurants?.map((item) => <RestaurantCard item={item} key={item.id} />)}
+          {demoRestaurants.map((item) => (
+            <RestaurantCard item={item} key={item.id} />
+          ))}
         </div>
       </section>
     </div>

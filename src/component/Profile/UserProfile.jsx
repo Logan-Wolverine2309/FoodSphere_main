@@ -37,7 +37,7 @@ function UserProfile() {
   return (
     <div className="min-h-screen bg-black flex">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-100 p-6">
+      <div className="w-64 bg-gray-100 p-4">
         <div className="space-y-2">
           {menuItems.map((item) => (
             <div

@@ -1,194 +1,136 @@
-import { useEffect, useState } from "react";
-import {
-  Divider,
-  Button,
-  Modal,
-  Box,
-  TextField,
-  Grid,
-} from "@mui/material";
-import CartItem from "./CartItem";
-import { Field, Form, Formik } from "formik";
-import { useSelector, useDispatch } from "react-redux";
-import { createOrder } from "../State/Order/Action";
+import React, { useEffect, useState } from "react";
+import { Box, Typography, Button, TextField, Divider, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
-import { findUserCart } from "../State/Cart/Action";
-
-export const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  outline: "none",
-  boxShadow: 24,
-  p: 4,
-};
-
-const initialValues = {
-  streetAddress: "",
-  state: "",
-  pincode: "",
-  city: "",
-};
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [cartItems, setCartItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const jwt = localStorage.getItem("jwt");
-
-  const cart = useSelector((state) => state.cart) || {};
-  const auth = useSelector((state) => state.auth) || {};
-  const cartItems = cart.cartItems || [];
-  const cartInfo = cart.cart || {};
-
-  // ✅ Fetch cart on mount
   useEffect(() => {
-    if (jwt) dispatch(findUserCart(jwt));
-  }, [dispatch, jwt]);
+    const savedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(savedItems);
 
-  const handleProceedToPay = () => {
-    navigate("/payment");
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  const saveCart = (updatedCart) => {
+    setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
-  const handleClose = () => setOpen(false);
-
-  const handleSubmit = (value) => {
-    const restaurantId = cartItems[0]?.food?.restaurant?.id;
-    if (!restaurantId) return;
-
-    const data = {
-      jwt,
-      order: {
-        restaurantId,
-        deliveryAddress: {
-          fullName: auth.user?.fullName || "",
-          streetAddress: value.streetAddress,
-          city: value.city,
-          state: value.state,
-          pincode: value.pincode,
-          country: "India",
-        },
-      },
-    };
-    dispatch(createOrder(data));
+  const handleRemoveItem = (id) => {
+    const updated = cartItems.filter((item) => item.id !== id);
+    saveCart(updated);
   };
+
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const deliveryFee = subtotal > 0 ? 40 : 0;
+  const total = subtotal + deliveryFee;
+const handleProceedToPay = () => {
+  if (subtotal === 0) {
+    alert("Your cart is empty. Please add items before proceeding to checkout.");
+    return;
+  }
+
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+  if (!isLoggedIn) {
+    alert("Please log in or register to proceed to checkout.");
+    navigate("/login");
+    return;
+  }
+
+  localStorage.setItem("orderTotal", total);
+  navigate("/payment", { state: { total } });
+};
 
   return (
-  <main className="p-5 space-y-5">
-    {auth.user && cartItems.length > 0 ? (
-      <>
-        {/* Cart Section */}
-        <section className="bg-black p-5 rounded-lg shadow-sm space-y-4">
-          {cartItems.map((item) => (
-            <CartItem item={item} key={item.id} />
-          ))}
+    <Box p={4}>
+      <Typography variant="h5" gutterBottom>Your Cart</Typography>
 
-          <Divider />
+      {/* Table Headers */}
+      <Box display="flex" justifyContent="space-between" px={2} mb={3}>
+        {['Item', 'Title', 'Price', 'Quantity', 'Total', 'Remove'].map(header => (
+          <Typography key={header} variant="subtitle2" color="textSecondary">
+            {header}
+          </Typography>
+        ))}
+      </Box>
+      <Divider />
 
-          {/* Membership */}
-          <div className="bg-white p-4 rounded-lg shadow-lg ring-1 ring-pink-400/50 hover:shadow-pink-400 transition duration-300">
-            <h3 className="text-purple-700 font-bold mb-2">
-              Renew <span className="bg-yellow-300 px-2 rounded">Pass</span> & Save More
-            </h3>
-            <p className="text-gray-600">You saved ₹50 so far.</p>
-            <Button
-              variant="contained"
-              size="small"
-              color="secondary"
-              onClick={() => alert("Pass added to cart")}
-              sx={{ bgcolor: "#1976d2", "&:hover": { bgcolor: "#115293" }, mt: 2 }}
-            >
-              Add 1 Month @ ₹19
-            </Button>
-          </div>
-
-          <Divider />
-
-          {/* Billing */}
-          <div className="space-y-3 pt-5 text-white">
-            <div className="flex justify-between">
-              <span>Item Total</span>
-              <span>₹{cartInfo.total || 0}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Delivery Fee</span>
-              <span>₹{cartInfo.deliveryFee || 0}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>GST & Restaurant Charges</span>
-              <span>₹{cartInfo.gstCharges || 0}</span>
-            </div>
-            <Divider />
-            <div className="flex justify-between font-bold">
-              <span>Total Pay</span>
-              <span>₹{cartInfo.total || 0}</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Address Modal */}
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={style}>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-              <Form>
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <Field
-                      as={TextField}
-                      name="streetAddress"
-                      label="Street Address"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field as={TextField} name="state" label="State" fullWidth required />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field as={TextField} name="city" label="City" fullWidth required />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field as={TextField} name="pincode" label="Pincode" fullWidth required />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button
-                      fullWidth
-                      type="submit"
-                      variant="contained"
-                      sx={{ bgcolor: "#1976d2", "&:hover": { bgcolor: "#115293" } }}
-                    >
-                      Deliver Here
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Form>
-            </Formik>
+      {/* Cart Items */}
+      {cartItems.map((item) => (
+        <Box key={item.id} display="flex" alignItems="center" justifyContent="space-between" px={2} py={2}>
+          <Box width={80} height={80}>
+            <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </Box>
-        </Modal>
+          <Typography>{item.name}</Typography>
+          <Typography>₹{item.price}</Typography>
+          <Typography>{item.quantity}</Typography>
+          <Typography>₹{item.price * item.quantity}</Typography>
+          <IconButton onClick={() => handleRemoveItem(item.id)}>
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      ))}
 
-        <div className="flex justify-end">
+      <Divider sx={{ mt: 4, mb: 6 }} />
+
+      {/* Cart Summary */}
+      <Box display="flex" justifyContent="space-between" mt={2} flexWrap="wrap">
+        <Box flex="1" maxWidth="400px">
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            Cart Totals
+          </Typography>
+          <Box display="flex" justifyContent="space-between" my={1}>
+            <Typography>Subtotal</Typography>
+            <Typography>₹{subtotal}</Typography>
+          </Box>
+          <Divider />
+          <Box display="flex" justifyContent="space-between" my={1}>
+            <Typography>Delivery Fee</Typography>
+            <Typography>₹{deliveryFee}</Typography>
+          </Box>
+          <Divider />
+          <Box display="flex" justifyContent="space-between" my={1}>
+            <Typography fontWeight="bold">Total</Typography>
+            <Typography fontWeight="bold">₹{total}</Typography>
+          </Box>
           <Button
             variant="contained"
             onClick={handleProceedToPay}
-            sx={{ mt: 2 }}
+            sx={{ mt: 2, bgcolor: "#ff5722", px: 4, py: 1.5 }}
+            fullWidth
           >
-            Proceed to Pay
+            PROCEED TO CHECKOUT
           </Button>
-        </div>
-      </>
-    ) : (
-      <section className="bg-black p-10 rounded-lg text-center text-white shadow-md">
-        <p className="text-lg font-medium">
-          {auth.user ? "Your cart is empty." : "Please login to view your cart."}
-        </p>
-      </section>
-    )}
-  </main>
+        </Box>
+
+        {/* Promo Code */}
+        <Box flex="1" maxWidth="400px" mt={{ xs: 4, md: 0 }}>
+          <Typography variant="subtitle1" mb={2}>
+            If you have a promo code, enter it here
+          </Typography>
+          <Box display="flex">
+            <TextField
+              placeholder="promo code"
+              fullWidth
+              variant="outlined"
+              size="small"
+              sx={{ mr: 1, flexGrow: 1 }}
+              InputProps={{ style: { borderRadius: 4, padding: "8px 12px" } }}
+            />
+            <Button variant="contained" sx={{ bgcolor: "primary.main", color: "#fff", px: 3 }}>
+              SUBMIT
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
-}
+};
 
 export default Cart;

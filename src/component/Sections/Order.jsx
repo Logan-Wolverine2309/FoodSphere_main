@@ -1,30 +1,43 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import OrderCard from '../Profile/OrderCard';
-import { getUsersOrder } from '../State/Order/Action';
+
+const demoOrders = [
+  {
+    id: 1,
+    date: '2025-06-10',
+    items: [
+      { id: 101, name: 'Pizza Margherita', price: 9.99, quantity: 1 },
+      { id: 102, name: 'Garlic Bread', price: 3.49, quantity: 2 },
+    ],
+    total: 16.97,
+    status: 'Delivered',
+  },
+  {
+    id: 2,
+    date: '2025-06-08',
+    items: [
+      { id: 103, name: 'Veggie Burger', price: 7.99, quantity: 1 },
+    ],
+    total: 7.99,
+    status: 'In Progress',
+  },
+];
 
 const Order = () => {
-  const dispatch = useDispatch();
-  const auth = useSelector((store) => store?.auth);
-  const order = useSelector((store) => store?.order);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (auth?.jwt) {
-      dispatch(getUsersOrder(auth.jwt));
-    }
-  }, [auth?.jwt, dispatch]);
+    // Simulate loading and fetch delay
+    const timer = setTimeout(() => {
+      setOrders(demoOrders);
+      setLoading(false);
+    }, 1000);
 
-  // If no auth, just show an info message
-  if (!auth?.jwt) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <img src="/images/empty.gif" alt="empty" />
-        <h2 className="text-white text-lg mt-4">view your orders</h2>
-      </div>
-    );
-  }
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (order?.loading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <img src="/images/loading.gif" alt="loading" />
@@ -32,15 +45,7 @@ const Order = () => {
     );
   }
 
-  if (order?.error) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <img src="/images/error.gif" alt="error" />
-      </div>
-    );
-  }
-
-  if (!order?.orders || order.orders.length === 0) {
+  if (orders.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
         <img src="/images/empty.gif" alt="empty" />
@@ -53,7 +58,7 @@ const Order = () => {
     <div className="flex items-center justify-center flex-col">
       <h1 className="text-xl text-center py-7 font-semibold">My Orders</h1>
       <div className="space-y-5 w-full lg:w-1/2">
-        {order.orders.map((order) =>
+        {orders.map((order) =>
           order.items.map((item) => (
             <OrderCard key={item.id} order={order} item={item} />
           ))

@@ -301,6 +301,7 @@ const Home = () => {
         <p className='text-2xl font-semibold text-gray-400 py-3 pb-10'>What's on your mind?</p>
         <MultiItemCarousel />
       </section>
+      <TopDishes />
 
       <section className='px-5 lg:px-20 pt-10'>
         <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
@@ -310,7 +311,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <TopDishes />
+      
       <Footer/>
     </div>
   );

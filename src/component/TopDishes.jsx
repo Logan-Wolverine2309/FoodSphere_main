@@ -37,12 +37,17 @@ const initialItems = [
   },
 ];
 
-const TopDishes = () => {
+const TopDishes = ({ items = initialItems }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('cartItems')) || [];
-    setCart(saved);
+    try {
+      const saved = JSON.parse(localStorage.getItem('cartItems')) || [];
+      setCart(saved);
+    } catch (err) {
+      console.error("Error loading cart from localStorage", err);
+      setCart([]);
+    }
   }, []);
 
   const saveCart = (updated) => {
@@ -78,10 +83,11 @@ const TopDishes = () => {
     saveCart(updatedCart);
   };
 
-  const getQuantity = (itemId) => {
-    const found = cart.find((i) => i.id === itemId);
-    return found ? found.quantity : 0;
-  };
+  // Create a quantity map to reduce repeated searching
+  const quantityMap = cart.reduce((acc, item) => {
+    acc[item.id] = item.quantity;
+    return acc;
+  }, {});
 
   return (
     <Box sx={{ padding: 3 }}>
@@ -89,12 +95,23 @@ const TopDishes = () => {
         Top dishes near you
       </Typography>
       <Grid container spacing={3}>
-        {initialItems.map((item) => {
-          const qty = getQuantity(item.id);
+        {items.map((item) => {
+          const qty = quantityMap[item.id] || 0;
           return (
             <Grid item xs={12} sm={6} md={3} key={item.id}>
-              <Card sx={{ borderRadius: 3, boxShadow: 3 }}>
-                <CardMedia component="img" height="160" image={item.image} alt={item.name} />
+              <Card
+                sx={{
+                  borderRadius: 3,
+                  boxShadow: 3,
+                  border: qty > 0 ? '2px solid #4caf50' : 'none',
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  height="160"
+                  image={item.image}
+                  alt={item.name}
+                />
                 <CardContent>
                   <Typography variant="h6">{item.name}</Typography>
                   <Typography variant="body2" color="text.secondary">

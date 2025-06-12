@@ -9,16 +9,20 @@ const RestaurantCard = ({ item }) => {
   const [isFavorite, setIsFavorite] = useState(false); // Local demo state
 
   const handleToggleFavorite = (e) => {
-    e.stopPropagation(); // Prevent click from triggering navigation
+    e.stopPropagation(); // Prevent card click
     setIsFavorite((prev) => !prev);
   };
 
   const handleNavigateToRestaurant = () => {
-    navigate(`/restaurants/demo/${item.id}/${item.address.city}`);
+    // For demo: use simple `/restaurant/:id` route
+    navigate(`/restaurant/${item.id}`);
   };
 
   return (
-    <Card className="w-[18rem] shadow-md rounded-md overflow-hidden cursor-pointer" onClick={handleNavigateToRestaurant}>
+    <Card
+      onClick={handleNavigateToRestaurant}
+      className="w-[18rem] shadow-md rounded-md overflow-hidden cursor-pointer"
+    >
       <div className="relative">
         <img
           className="w-full h-[10rem] object-cover"

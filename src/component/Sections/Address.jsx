@@ -95,7 +95,7 @@ const Address = ({ userEmail = "demo@example.com" }) => {
   return (
     <section className="flex justify-center px-5 pb-10">
       <div>
-        <h1 className="text-center font-semibold text-2xl py-10">Choose Delivery Address (Demo)</h1>
+        <h1 className="text-center font-semibold text-2xl py-10">Choose Delivery Address </h1>
 
         <div className="flex gap-5 flex-wrap justify-center">
           {addresses.map((address, index) => (

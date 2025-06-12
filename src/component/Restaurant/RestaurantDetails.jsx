@@ -38,7 +38,20 @@ const demoRestaurants = [
       "https://source.unsplash.com/600x400/?biryani",
       "https://source.unsplash.com/600x400/?rice,spices"
     ]
-  }
+  },
+  {
+    id: "3",
+    name: "Veggie Delight",
+    description: "Fresh and healthy vegetarian dishes",
+    city: "bangalore",
+    open: true,
+    categories: ["Starters", "Main Course", "Desserts"],
+    images: [
+      "https://source.unsplash.com/600x400/?vegetarian,food",
+      "https://source.unsplash.com/600x400/?salad,healthy"
+    ]
+  },
+  
 ];
 
 const demoMenuItems = [
@@ -46,7 +59,27 @@ const demoMenuItems = [
   { id: "2", name: "Paneer Tikka", category: "Starters", vegetarian: true, seasonal: false },
   { id: "3", name: "Lassi", category: "Drinks", vegetarian: true, seasonal: true },
   { id: "4", name: "Chicken Biryani", category: "Non-Veg", vegetarian: false, seasonal: false },
-  { id: "5", name: "Veg Biryani", category: "Veg", vegetarian: true, seasonal: false }
+  { id: "5", name: "Veg Biryani", category: "Veg", vegetarian: true, seasonal: false },
+  { id: "6", name: "Seasonal Salad", category: "Salads", vegetarian: true, seasonal: true },
+  { id: "7", name: "Spicy Tandoori Chicken", category: "Starters", vegetarian: false, seasonal: false },
+  { id: "8", name: "Paneer Butter Masala", category: "Main Course", vegetarian: true, seasonal: false },
+  { id: "9", name: "Chocolate Lava Cake", category: "Desserts", vegetarian: true, seasonal: false },
+  { id: "10", name: "Mango Smoothie", category: "Drinks", vegetarian: true, seasonal: true },
+  { id: "11", name: "Fish Curry", category: "Main Course", vegetarian: false, seasonal: false },
+  { id: "12", name: "Veg Spring Rolls", category: "Starters", vegetarian: true, seasonal: false },
+  { id: "13", name: "Fruit Punch", category: "Drinks", vegetarian: true, seasonal: true },
+  { id: "14", name: "Chicken Korma", category: "Non-Veg", vegetarian: false, seasonal: false },
+  { id: "15", name: "Mixed Vegetable Curry", category: "Veg", vegetarian: true, seasonal: false },
+  { id: "16", name: "Seasonal Fruit Salad", category: "Salads", vegetarian: true, seasonal: true },
+  { id: "17", name: "Tandoori Paneer Tikka", category: "Starters", vegetarian: true, seasonal: false },
+  { id: "18", name: "Dal Makhani", category: "Main Course", vegetarian: true, seasonal: false },
+  { id: "19", name: "Gulab Jamun", category: "Desserts", vegetarian: true, seasonal: false },
+  { id: "20", name: "Iced Tea", category: "Drinks", vegetarian: true, seasonal: true },
+  { id: "21", name: "Butter Chicken", category: "Main Course", vegetarian: false, seasonal: false },
+  { id: "22", name: "Veg Pakora", category: "Starters", vegetarian: true, seasonal: false },
+  { id: "23", name: "Mint Lemonade", category: "Drinks", vegetarian: true, seasonal: true },
+  { id: "24", name: "Mutton Rogan Josh", category: "Non-Veg", vegetarian: false, seasonal: false },
+  { id: "25", name: "Chole Bhature", category: "Veg", vegetarian: true, seasonal: false }
 ];
 
 const foodTypes = [

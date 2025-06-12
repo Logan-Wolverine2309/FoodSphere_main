@@ -3,6 +3,7 @@ import "./Home.css";
 import RestaurantCard from '../Restaurant/RestaurantCard';
 import MultiItemCarousel from './MultiItemCarousel';
 import Footer from '../Footer';
+import TopDishes from '../TopDishes';
 
 // Demo restaurant data
 const demoRestaurants = [
@@ -309,6 +310,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <TopDishes />
       <Footer/>
     </div>
   );

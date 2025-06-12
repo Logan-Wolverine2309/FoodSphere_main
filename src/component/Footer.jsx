@@ -48,15 +48,22 @@ const Footer = () => {
             <li>Delhi</li>
             <li>Mumbai</li>
             <li>Pune</li>
+            <li>Chennai</li>
+            <li>Kolkata</li>
+            <li>Ahmedabad</li>
+            <li>Jaipur</li>
+            <li>Lucknow</li>
+            <li>Chandigarh</li>
+            <li>Indore</li>
+            <li>Coimbatore</li>
+            <li>Surat</li>
             <li>
               <select className="border rounded px-2 py-1 mt-1 text-sm">
-                <option>679 cities</option>
+                <option>15 cities &rarr;</option>
               </select>
             </li>
           </ul>
         </div>
-
-        {/* Legal + Social */}
         <div>
           <h3 className="font-semibold mb-2">Legal</h3>
           <ul className="space-y-1 text-sm mb-4">

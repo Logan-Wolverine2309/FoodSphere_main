@@ -39,7 +39,7 @@ const handleProceedToPay = () => {
 
   if (!isLoggedIn) {
     alert("Please log in or register to proceed to checkout.");
-    navigate("/login");
+    navigate("/paymentpage");
     return;
   }
 

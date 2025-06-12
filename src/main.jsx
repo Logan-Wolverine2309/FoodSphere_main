@@ -9,11 +9,13 @@ import './index.css';
 import {store} from './component/State/store';
 
 
+
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}> 
         <App />
+      
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

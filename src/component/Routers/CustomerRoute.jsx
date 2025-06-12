@@ -38,6 +38,7 @@ export const CustomerRoute = () => {
         <Route path="/terms" element={<Terms/>} />
         <Route path="/my-profile/*" element={<Profile/>} />
         
+        
       </Routes>
       <Auth/>
     </div>

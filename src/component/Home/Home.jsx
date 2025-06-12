@@ -2,6 +2,7 @@ import React from 'react';
 import "./Home.css";
 import RestaurantCard from '../Restaurant/RestaurantCard';
 import MultiItemCarousel from './MultiItemCarousel';
+import Footer from '../Footer';
 
 // Demo restaurant data
 const demoRestaurants = [
@@ -281,18 +282,6 @@ const demoRestaurants = [
       "https://source.unsplash.com/600x400/?fruit,healthy"
     ]
   },
-  {
-    id: "25",
-    name: "Tandoori Treats",
-    description: "Authentic tandoori dishes and more",
-    city: "kolkata",
-    open: true,
-    categories: ["Starters", "Main Course", "Drinks"],
-    images: [
-      "https://source.unsplash.com/600x400/?tandoori,indian",
-      "https://source.unsplash.com/600x400/?chicken,tandoor"
-    ]
-  },
 ];
 
 const Home = () => {
@@ -320,6 +309,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

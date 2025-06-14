@@ -40,11 +40,6 @@ const Cart = () => {
     return;
   }
 
-  // if (!loggedIn) {
-  //   alert("Please log in or register to proceed to checkout.");
-  //   navigate("/login");
-  //   return;
-  // }
 
   localStorage.setItem("orderTotal", total);
   navigate("/payment", { state: { total } });

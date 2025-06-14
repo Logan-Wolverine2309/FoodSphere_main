@@ -250,14 +250,23 @@ const Home = () => {
           ))}
         </div>
       </section>
-      {/* <section className='px-5 lg:px-20 pt-10'>
+     
+      <section className='px-5 lg:px-20 pt-10'>
         <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Explore More Restaurants</h1>
         <div className='flex flex-wrap items-center justify-around gap-5'>
           {demoRestaurants.map((item) => (
             <RestaurantCard item={item} key={item.id} />
           ))}
         </div>
-      </section> */}
+      </section>
+      <section className='px-5 lg:px-20 pt-10'>
+        <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Discover New Flavours</h1>
+        <div className='flex flex-wrap items-center justify-around gap-5'>
+          {demoRestaurants.map((item) => (
+            <RestaurantCard item={item} key={item.id} />
+          ))}
+        </div>
+      </section>
           <Footer/>
     </div>
   );

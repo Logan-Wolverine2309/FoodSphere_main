@@ -10,7 +10,6 @@ import process from 'process';
 import { Routers } from './component/Routers/Routers';
 import { SnackbarProvider } from 'notistack'; 
 
-
 window.process = process;
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
 
   const auth = useSelector((store) => store.auth);
   const token = auth?.jwt || jwt;
- 
 
   useEffect(() => {
     if (token) {
@@ -41,7 +39,6 @@ function App() {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         autoHideDuration={3000}
       >
-        
         <CssBaseline />
         <Routers />
       </SnackbarProvider>

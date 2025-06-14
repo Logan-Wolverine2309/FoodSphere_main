@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 px-4 py-10 lg:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+    <footer className="bg-gray-100 text-gray-700 px-6 py-20 lg:px-20 mt-10">
+      <div className="max-w-8xl mx-auto grid grid-cols-5 md:grid-cols-5 lg:grid-cols-5 gap-10">
         
         {/* Logo & Copyright */}
         <div className="col-span-2 lg:col-span-1">
@@ -48,22 +48,15 @@ const Footer = () => {
             <li>Delhi</li>
             <li>Mumbai</li>
             <li>Pune</li>
-            <li>Chennai</li>
-            <li>Kolkata</li>
-            <li>Ahmedabad</li>
-            <li>Jaipur</li>
-            <li>Lucknow</li>
-            <li>Chandigarh</li>
-            <li>Indore</li>
-            <li>Coimbatore</li>
-            <li>Surat</li>
             <li>
               <select className="border rounded px-2 py-1 mt-1 text-sm">
-                <option>15 cities &rarr;</option>
+                <option>11 cities</option>
               </select>
             </li>
           </ul>
         </div>
+
+        {/* Legal + Social */}
         <div>
           <h3 className="font-semibold mb-2">Legal</h3>
           <ul className="space-y-1 text-sm mb-4">

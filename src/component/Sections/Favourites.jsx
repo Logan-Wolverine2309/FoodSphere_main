@@ -1,13 +1,14 @@
 import React from "react";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, ratingClasses } from "@mui/material";
 import RestaurantCard from "../Restaurant/RestaurantCard";
+import { motion } from "framer-motion";
 
-// Purely local demo data (no API)
+// Local demo data
 const demoFavorites = [
   {
     id: 1,
     name: "Cozy Corner Café",
-    image: "/images/cozy-corner.jpg",
+    images: ["https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg"],
     cuisine: "Cafe",
     rating: 4.2,
     address: "42 Peace Ave, Hilltown",
@@ -15,7 +16,7 @@ const demoFavorites = [
   {
     id: 2,
     name: "Dragon Bowl",
-    image: "/images/dragon-bowl.jpg",
+    images: ["https://images.pexels.com/photos/858496/pexels-photo-858496.jpeg"],
     cuisine: "Asian Fusion",
     rating: 4.8,
     address: "88 Dragon Street, Chinatown",
@@ -23,15 +24,15 @@ const demoFavorites = [
   {
     id: 3,
     name: "La Fiesta Mexicana",
-    image: "/images/la-fiesta.jpg",
+    images: ["https://images.pexels.com/photos/2087748/pexels-photo-2087748.jpeg"],
     cuisine: "Mexican",
     rating: 4.5,
     address: "15 Sunset Blvd, Southside",
   },
-  {
+   {
     id: 4,
     name: "Pasta Perfection",
-    image: "/images/pasta-perfection.jpg",
+    images: ["https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Italian",
     rating: 4.7,
     address: "77 Pasta Lane, Downtown",
@@ -39,7 +40,7 @@ const demoFavorites = [
   {
     id: 5,
     name: "Spice Symphony",
-    image: "/images/spice-symphony.jpg",
+    images:["https://images.pexels.com/photos/13063314/pexels-photo-13063314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Indian",
     rating: 4.6,
     address: "23 Curry Road, Eastside",
@@ -47,7 +48,7 @@ const demoFavorites = [
   {
     id: 6,
     name: "Burger Haven",
-    image: "/images/burger-haven.jpg",
+    images:["https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "American",
     rating: 4.3,
     address: "99 Burger Street, Westside",
@@ -55,7 +56,7 @@ const demoFavorites = [
   {
     id: 7,
     name: "Sushi Sensation",
-    image: "/images/sushi-sensation.jpg",
+    images: ["https://images.pexels.com/photos/4828151/pexels-photo-4828151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Japanese",
     rating: 4.9,
     address: "30 Sushi Way, Uptown",
@@ -63,7 +64,7 @@ const demoFavorites = [
   {
     id: 8,
     name: "Vegan Vibes",
-    image: "/images/vegan-vibes.jpg",
+    images:["https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Vegan",
     rating: 4.4,
     address: "60 Green Road, Eco City",
@@ -71,7 +72,7 @@ const demoFavorites = [
   {
     id: 9,
     name: "Dessert Dreams",
-    image: "/images/dessert-dreams.jpg",
+    images: ["https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Desserts",
     rating: 4.1,
     address: "10 Sweet Street, Candyland",
@@ -79,7 +80,7 @@ const demoFavorites = [
   {
     id: 10,
     name: "Grill Masters",
-    image: "/images/grill-masters.jpg",
+    images: ["https://images.pexels.com/photos/8250362/pexels-photo-8250362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Barbecue",
     rating: 4.0,
     address: "55 Grill Road, Smoky Town",
@@ -87,7 +88,7 @@ const demoFavorites = [
   {
     id: 11,
     name: "Coffee Craze",
-    image: "/images/coffee-craze.jpg",
+    images:["https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Cafe",
     rating: 4.3,
     address: "20 Coffee Lane, Brew City",
@@ -95,15 +96,16 @@ const demoFavorites = [
   {
     id: 12,
     name: "Taco Fiesta",
-    image: "/images/taco-fiesta.jpg",
+    images:["https://images.pexels.com/photos/8230019/pexels-photo-8230019.jpeg?auto=compress&cs=tinysrgb&w=600"],
     cuisine: "Mexican",
     rating: 4.6,
     address: "45 Taco Street, Fiesta Town",
+    status: "Open"
   },
   {
     id: 13,
     name: "Pizzeria Paradise",
-    image: "/images/pizzeria-paradise.jpg",
+    images: ["https://images.pexels.com/photos/1049620/pexels-photo-1049620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     cuisine: "Italian",
     rating: 4.8,
     address: "80 Pizza Avenue, Slice City",
@@ -111,78 +113,68 @@ const demoFavorites = [
   {
     id: 14,
     name: "Curry Corner",
-    image: "/images/curry-corner.jpg",
+    images:["https://images.pexels.com/photos/28125427/pexels-photo-28125427/free-photo-of-naan-roti-tarkari-everest-tandoori-kitchen.jpeg?auto=compress&cs=tinysrgb&w=600"],
     cuisine: "Indian",
-    rating: 4.5,
+    rating: "4.5",
     address: "35 Curry Lane, Spice Town",
   },
   {
     id: 15,
     name: "Noodle Nirvana",
-    image: "/images/noodle-nirvana.jpg",
+    images:["https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=600"],
     cuisine: "Asian Fusion",
     rating: 4.7,
     address: "90 Noodle Street, Wok City",
-  },  
-  {
-    id: 16,
-    name: "Steakhouse Supreme",
-    image: "/images/steakhouse-supreme.jpg",
-    cuisine: "American",
-    rating: 4.4,
-    address: "25 Steak Road, Grill City",
-  },
-  {
-    id: 17,
-    name: "Bakery Bliss",
-    image: "/images/bakery-bliss.jpg",
-    cuisine: "Bakery",
-    rating: 4.2,
-    address: "70 Bakery Lane, Sweet Town",
-  },
-  {
-    id: 18,
-    name: "Smoothie Station",
-    image: "/images/smoothie-station.jpg",
-    cuisine: "Healthy Drinks",
-    rating: 4.1,
-    address: "50 Smoothie Street, Fresh City",
-  },
-  {
-    id: 19,
-    name: "Tapas Time",
-    image: "/images/tapas-time.jpg",
-    cuisine: "Spanish",
-    rating: 4.3,
-    address: "65 Tapas Road, Iberia Town",
-  },
-  {
-    id: 20,
-    name: "Bistro Bliss",
-    image: "/images/bistro-bliss.jpg",
-    cuisine: "French",
-    rating: 4.5,
-    address: "85 Bistro Lane, Parisian District",
-  },
+  }
+  // ...add more items as needed
 ];
 
 const Favourites = () => {
   return (
-    <Card className="max-w-5xl mx-auto mt-10 p-6 shadow-2xl rounded-2xl bg-white">
+    <Card className="max-w-6xl mx-auto mt-12 px-6 py-10 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <CardContent>
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Favourites</h2>
+        {/* Animated Gradient Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-500"
+        >
+          Favourites
+        </motion.h1>
 
         {demoFavorites.length > 0 ? (
-          <div className="flex flex-wrap gap-6 justify-center">
-            {demoFavorites.map((item) => (
-              <RestaurantCard key={item.id} item={item} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {demoFavorites.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  type: "spring",
+                }}
+                whileHover={{ scale: 1.03 }}
+                className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+              >
+                <RestaurantCard item={item} />
+              </motion.div>
             ))}
           </div>
         ) : (
-          <div className="text-center text-gray-500">
-            <img src="/images/empty.gif" alt="No favorites" className="w-40 mx-auto mb-4" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-gray-400"
+          >
+            <img
+              src="/images/empty.gif"
+              alt="No favorites"
+              className="w-40 mx-auto mb-4"
+            />
             <p>No favorite restaurants added yet.</p>
-          </div>
+          </motion.div>
         )}
       </CardContent>
     </Card>

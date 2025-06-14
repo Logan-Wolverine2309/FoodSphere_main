@@ -11,7 +11,7 @@ const demoRestaurants = [
     id: 1,
     name: "The Grill House",
     description: "Juicy grilled meals with spices",
-    images: ["https://source.unsplash.com/600x400/?restaurant,grill"],
+    images: ["https://images.pexels.com/photos/533325/pexels-photo-533325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     open: true,
     address: { city: "delhi" }
   },
@@ -19,7 +19,7 @@ const demoRestaurants = [
     id: 2,
     name: "Biryani Kingdom",
     description: "Authentic Hyderabadi biryani",
-    images: ["https://source.unsplash.com/600x400/?biryani,food"],
+    images: ["https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     open: true,
     address: { city: "hyderabad" }
   },
@@ -27,7 +27,7 @@ const demoRestaurants = [
     id: 3,
     name: "Veggie Delight",
     description: "Pure veg meals and snacks",
-    images: ["https://source.unsplash.com/600x400/?vegetarian,meal"],
+    images: ["https://images.pexels.com/photos/23286188/pexels-photo-23286188/free-photo-of-popular-indian-and-pakistani-snack-chicken-and-beef-samosa-desi-food.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     open: false,
     address: { city: "mumbai" }
   },
@@ -39,9 +39,8 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Desserts"],
     images: [
-      "https://source.unsplash.com/600x400/?indian,spices",
-      "https://source.unsplash.com/600x400/?curry,naan"
-    ]
+      "https://images.pexels.com/photos/32449863/pexels-photo-32449863/free-photo-of-delicious-brazilian-chicken-parmigiana-with-chips.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/32500429/pexels-photo-32500429/free-photo-of-variety-of-appetizers-on-a-table-for-party.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"   ]
   },
   {
     id: "5",
@@ -51,8 +50,8 @@ const demoRestaurants = [
     open: true,
     categories: ["Desserts", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?dessert,cake",
-      "https://source.unsplash.com/600x400/?icecream,sweets"
+      "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/1028637/pexels-photo-1028637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -63,8 +62,8 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?pasta,italian",
-      "https://source.unsplash.com/600x400/?noodles,sauce"
+      "https://images.pexels.com/photos/31064159/pexels-photo-31064159/free-photo-of-delicious-chicken-pasta-with-fresh-vegetables.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/16988260/pexels-photo-16988260/free-photo-of-pasta-made-from-semolina-and-shaped-in-the-form-of-slender-tubes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -75,8 +74,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?sushi,japanese",
-      "https://source.unsplash.com/600x400/?fish,seafood"
+      "https://images.pexels.com/photos/32482535/pexels-photo-32482535/free-photo-of-fresh-salmon-nigiri-sushi-on-bamboo-mat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -87,8 +85,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?tandoori,indian",
-      "https://source.unsplash.com/600x400/?chicken,tandoor"
+      "https://images.pexels.com/photos/17050759/pexels-photo-17050759/free-photo-of-curry-meat-based-dishes-served-on-white-plates.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -99,8 +96,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Salads", "Smoothies", "Bowls"],
     images: [
-      "https://source.unsplash.com/600x400/?healthy,food",
-      "https://source.unsplash.com/600x400/?salad,smoothie"
+      "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -111,8 +107,8 @@ const demoRestaurants = [
     open: true,
     categories: ["Coffee", "Snacks", "Desserts"],
     images: [
-      "https://source.unsplash.com/600x400/?cafe,coffee",
-      "https://source.unsplash.com/600x400/?pastry,bakery"
+      "https://images.pexels.com/photos/2299028/pexels-photo-2299028.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -120,11 +116,10 @@ const demoRestaurants = [
     name: "Barbecue Bliss",
     description: "Smoky barbecue dishes and sides",
     city: "chandigarh",
-    open: true,
+    open: false,
     categories: ["Starters", "Main Course", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?barbecue,grill",
-      "https://source.unsplash.com/600x400/?smoked,meat"
+      "https://images.pexels.com/photos/2233729/pexels-photo-2233729.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -135,8 +130,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Desserts"],
     images: [
-      "https://source.unsplash.com/600x400/?fusion,food",
-      "https://source.unsplash.com/600x400/?international,cuisine"
+      "https://images.pexels.com/photos/8951556/pexels-photo-8951556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -147,8 +141,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Starters", "Main Course", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?curry,indian",
-      "https://source.unsplash.com/600x400/?naan,roti"
+      "https://images.pexels.com/photos/6544376/pexels-photo-6544376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -159,8 +152,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Pizzas", "Pastas", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?pizza,italian",
-      "https://source.unsplash.com/600x400/?cheese,toppings"
+      "https://images.pexels.com/photos/32524109/pexels-photo-32524109/free-photo-of-delicious-assortment-of-fast-food-dishes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -168,11 +160,10 @@ const demoRestaurants = [
     name: "Burger Barn",
     description: "Juicy burgers and crispy fries",
     city: "indore",
-    open: true,
+    open: false,
     categories: ["Burgers", "Sides", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?burger,fastfood",
-      "https://source.unsplash.com/600x400/?fries,cheeseburger"
+      "https://images.pexels.com/photos/17369176/pexels-photo-17369176/free-photo-of-tasty-burger-on-black-tray.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -183,8 +174,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Noodles", "Stir-Fry", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?noodles,asian",
-      "https://source.unsplash.com/600x400/?stirfry,vegetables"
+      "https://images.pexels.com/photos/8588501/pexels-photo-8588501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -195,8 +185,7 @@ const demoRestaurants = [
     open: true,
     categories: ["Tacos", "Burritos", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?taco,mexican",
-      "https://source.unsplash.com/600x400/?burrito,salsa"
+      "https://images.pexels.com/photos/2087748/pexels-photo-2087748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -204,11 +193,10 @@ const demoRestaurants = [
     name: "Samosa Station",
     description: "Crispy samosas and Indian snacks",
     city: "pune",
-    open: true,
+    open: false,
     categories: ["Snacks", "Chaat", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?samosa,indian",
-      "https://source.unsplash.com/600x400/?chaat,spicy"
+      "https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
   },
   {
@@ -219,77 +207,27 @@ const demoRestaurants = [
     open: true,
     categories: ["Breakfast", "Pancakes", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?pancake,breakfast",
-      "https://source.unsplash.com/600x400/?maple,syrup"
-    ]
+      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"   
+     ]
   },
   {
     id: "20",
     name: "Ice Cream Island",
     description: "Cool down with our ice creams and sundaes",
     city: "chennai",
-    open: true,
+    open: false,
     categories: ["Ice Cream", "Sundaes", "Drinks"],
     images: [
-      "https://source.unsplash.com/600x400/?icecream,sundae",
-      "https://source.unsplash.com/600x400/?dessert,cold"
+      "https://images.pexels.com/photos/32518693/pexels-photo-32518693/free-photo-of-gourmet-ice-cream-bar-on-elegant-plate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     ]
-  },
-  {
-    id: "21",
-    name: "Salad Station",
-    description: "Fresh salads and healthy bowls",
-    city: "delhi",
-    open: true,
-    categories: ["Salads", "Bowls", "Drinks"],
-    images: [
-      "https://source.unsplash.com/600x400/?salad,healthy",
-      "https://source.unsplash.com/600x400/?bowl,vegetables"
-    ]
-  },
-  {
-    id: "22",
-    name: "Wrap World",
-    description: "Delicious wraps and rolls",
-    city: "hyderabad",
-    open: true,
-    categories: ["Wraps", "Rolls", "Drinks"],
-    images: [
-      "https://source.unsplash.com/600x400/?wrap,roll",
-      "https://source.unsplash.com/600x400/?tortilla,stuffed"
-    ]
-  },
-  {
-    id: "23",
-    name: "Curry Corner",
-    description: "Authentic Indian curries and breads",
-    city: "bangalore",
-    open: true,
-    categories: ["Curries", "Breads", "Drinks"],
-    images: [
-      "https://source.unsplash.com/600x400/?curry,indian",
-      "https://source.unsplash.com/600x400/?naan,roti"
-    ]
-  },
-  {
-    id: "24",
-    name: "Smoothie Spot",
-    description: "Refreshing smoothies and juices",
-    city: "mumbai",
-    open: true,
-    categories: ["Smoothies", "Juices", "Drinks"],
-    images: [
-      "https://source.unsplash.com/600x400/?smoothie,juice",
-      "https://source.unsplash.com/600x400/?fruit,healthy"
-    ]
-  },
+  }
 ];
 
 const Home = () => {
   return (
-    <div className='pb-10'>
+    <div className=''>
       <section className='banner -z-50 relative flex flex-col justify-center items-center'>
-        <div className='w-[50vw] z-10 text-center'>
+        <div className='w-[80vw] z-10 text-center'>
           <p className='text-2xl lg:text-6xl font-bold z-10 py-5'>FoodSphere</p>
           <p className='z-10 text-gray-300 text-xl lg:text-4xl'>The Ultimate Comfortable Tasty Foods for Every Mood</p>
         </div>
@@ -301,6 +239,7 @@ const Home = () => {
         <p className='text-2xl font-semibold text-gray-400 py-3 pb-10'>What's on your mind?</p>
         <MultiItemCarousel />
       </section>
+
       <TopDishes />
 
       <section className='px-5 lg:px-20 pt-10'>
@@ -311,8 +250,15 @@ const Home = () => {
           ))}
         </div>
       </section>
-      
-      <Footer/>
+      {/* <section className='px-5 lg:px-20 pt-10'>
+        <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Explore More Restaurants</h1>
+        <div className='flex flex-wrap items-center justify-around gap-5'>
+          {demoRestaurants.map((item) => (
+            <RestaurantCard item={item} key={item.id} />
+          ))}
+        </div>
+      </section> */}
+          <Footer/>
     </div>
   );
 };
